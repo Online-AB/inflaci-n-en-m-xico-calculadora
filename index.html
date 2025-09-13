@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="always" />
+<meta name="description" content="La Calculadora de Inflación México es una herramienta en línea que permite conocer cómo ha cambiado el valor del dinero a lo largo del tiempo según la inflación. Ideal para ajustar precios, salarios o inversiones con base en el Índice Nacional de Precios al Consumidor (INPC)." />
+<meta name="keywords" content="calculadora inflación mexico, calculadora inflacion anual mexico,calculadora de inflacion del banco de mexico, calculadora inflación banco de méxico, calculadora de inflación de méxico" />
+<link href="" rel="canonical" />
+<title>Calculadora de Inflación México.
+</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0 1rem 3rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFF5B8;
+    color: #6B572E;
+    line-height: 1.6;
+  }
+  header {
+    background-color: #E6C870;
+    color: #4B3E17;
+    font-weight: 700;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 3px 8px rgba(230, 200, 112, 0.6);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  header a {
+    color: #4B3E17;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-self: center;
+  }
+  header a:hover,
+  header a:focus {
+    background-color: #9E8B45;
+    color: #FFF5B8;
+    outline: none;
+  }
+  .page-title {
+    max-width: 720px;
+    margin: 1.8rem auto 2.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #7D6B2F;
+    text-align: center;
+    letter-spacing: 0.07em;
+  }
+  .dropdown-container {
+    max-width: 720px;
+    margin: 0 auto 1.8rem;
+    display: flex;
+    justify-content: center;
+  }
+  select {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1.1rem;
+    padding: 0.65rem 1.3rem;
+    border-radius: 8px;
+    border: 2px solid #E6C870;
+    background-color: #FFFADC;
+    color: #6B572E;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  select:hover, select:focus {
+    background-color: #E6C870;
+    color: #FFF5B8;
+    border-color: #9E8B45;
+    outline: none;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto 4rem;
+    background-color: #FFFADC;
+    border-radius: 16px;
+    padding: 3rem 3.5rem;
+    border: 2px solid #E6C870;
+    box-shadow: 0 7px 20px rgba(230, 200, 112, 0.25);
+  }
+  label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #7D6B2F;
+    font-size: 1.18rem;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 0.4rem 0.90rem;
+    font-size: 1.15rem;
+    border-radius: 10px;
+    border: 2px solid #F4E9AB;
+    margin-bottom: 2rem;
+    background-color: #FCF7D3;
+    color: #7D6B2F;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border-color: #9E8B45;
+    background-color: #FFF9B0;
+  }
+  button.calculate-btn {
+    width: 100%;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #FFF5B8;
+    background-color: #E6C870;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+  button.calculate-btn:hover {
+    background-color: #9E8B45;
+  }
+  .result {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #6B572E;
+    padding: 1rem 1.5rem;
+    border-radius: 14px;
+    background-color: #FFF9B0;
+    border: 2px solid #E6C870;
+    margin-bottom: 3rem;
+    text-align: center;
+    user-select: none;
+    display: none;
+    letter-spacing: 0.02em;
+  }
+  .cta-container {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .cta-button {
+    background-color: #E6C870;
+    color: #FFF5B8;
+    font-weight: 700;
+    font-size: 1.28rem;
+    padding: 1.1rem 3rem;
+    border-radius: 22px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    letter-spacing: 0.07em;
+    user-select: none;
+  }
+  .cta-button:hover {
+    background-color: #9E8B45;
+    color: #FFF5B8;
+  }
+  article {
+    max-width: 720px;
+    margin: 0 auto 4rem;
+    background-color: #FCF7D3;
+    border-left: 14px solid #E6C870;
+    padding: 3rem 3.5rem;
+    border-radius: 22px;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.75;
+    color: #7D6B2F;
+    letter-spacing: 0.02em;
+  }
+  article h2 {
+    margin-top: 0;
+    font-weight: 900;
+    font-size: 2.3rem;
+    margin-bottom: 1.2rem;
+    color: #9E8B45;
+    letter-spacing: 0.1em;
+  }
+  .about-author {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    background-color: #FFFADC;
+    border-left: 8px solid #E6C870;
+    padding: 1.75rem 2.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #7D6B2F;
+    letter-spacing: 0.04em;
+  }
+  .about-author h3 {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #9E8B45;
+  }
+  footer {
+    background-color: #E6C870;
+    color: #FFF5B8;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: 0 0 14px 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+  footer a {
+    color: #FFF5B8;
+    text-decoration: underline;
+  }
+  @media (max-width: 480px) {
+    main, article, .about-author {
+      padding: 1.8rem 2rem;
+      border-radius: 14px;
+    }
+    .dropdown-container {
+      padding: 0 1rem;
+    }
+    header {
+      justify-content: center;
+      font-size: 1.4rem;
+      gap: 1rem;
+    }
+    article h2 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="https://calculadorade-inflacion.com/index.html" rel="dofollow">Inicio</a>
+  
+  <a href="https://calculadorade-inflacion.com/about-us.html" rel="dofollow">Sobre Nosotros</a>
+  <a href="https://calculadorade-inflacion.com/privacy-policy.html" rel="nofollow">Política de Privacidad</a>
+</header>
+
+<div class="page-title">Calculadora de Inflación México.
+</div>
+
+<div class="dropdown-container">
+  <select id="pageSelector" aria-label="Selecciona la calculadora de inflación por país" onchange="if(this.value) window.location.href=this.value">
+    <option value="https://calculadorade-inflacion.com/index.html" selected>Calculadora de Inflación Argentina</option>
+    <option value="https://calculadorade-inflacion.com/calculadora-ipc-chile.html">Calculadora de la inflación de Chile</option>
+    <option value="https://calculadorade-inflacion.com/colombia.html">Calculadora de Inflación de Colombia</option>
+    <option value="https://calculadorade-inflacion.com/mexico.html">Calculadora de Inflación México</option>
+    <option value="https://calculadorade-inflacion.com/paraguay.html">Calculadora de la inflación Paraguay</option>
+    <option value="https://calculadorade-inflacion.com/peru.html">Calculadora de inflación de Perú</option>
+    <option value="https://calculadorade-inflacion.com/uruguay.html">Calculadora de inflación Uruguay</option>
+    <option value="https://calculadorade-inflacion.com/united-state.html">Calculadora de inflación Estados Unidos</option>
+  </select>
+</div>
+
+<main>
+  <form id="inflationCalc" aria-label="Formulario calculadora de inflación" onsubmit="handleCalculation(event)">
+    <label for="valorInicial">Valor inicial (moneda local):</label>
+    <input type="number" id="valorInicial" name="valorInicial" step="0.01" min="0" placeholder="Ingrese el valor inicial" required />
+    <label for="inflacion">Tasa de inflación anual (%):</label>
+    <input type="number" id="inflacion" name="inflacion" step="0.01" min="0" placeholder="Ingrese la tasa de inflación" required />
+    <label for="años">Número de años:</label>
+    <input type="number" id="años" name="años" step="1" min="0" placeholder="Ingrese la cantidad de años" required />
+    <button type="submit" class="calculate-btn" aria-label="Calcular valor ajustado por inflación">Calcular</button>
+  </form>
+  <div class="result" id="resultado" role="region" aria-live="polite" aria-atomic="true"></div>
+  <div class="cta-container">
+    <a href="https://calculadorade-inflacion.com/mexico.html" class="cta-button" rel="dofollow" aria-label="Calculadora de Inflación México.
+">Calculadora de Inflación México.
+</a>
+  </div>
+</main>
+
+<article>
+  <h2>Calculadora de Inflación México.
+</h2>
+  <p>La <strong>Calculadora de Inflación México.
+</strong> es una herramienta clave para entender cómo la inflación afecta el poder adquisitivo del dinero a lo largo del tiempo. Puedes ingresar un valor inicial, una tasa anual de inflación y un periodo en años para calcular el equivalente ajustado.</p>
+  <p>Esta calculadora ayuda a planificar finanzas personales, ajustar salarios, presupuestos e inversiones considerando la inflación real, facilitando la toma de decisiones financieras informadas.</p>
+  <p>Su uso sencillo y resultados precisos la convierten en una herramienta práctica y confiable para quienes desean proteger su dinero frente a la variabilidad económica.</p>
+  <p>Explora tus números y controla el impacto de la inflación con esta completa <strong>Calculadora de Inflación México.
+</strong>.</p>
+<p>La Calculadora de Inflación México se ha convertido en una herramienta esencial para quienes desean entender el impacto del tiempo sobre el valor del dinero en la economía mexicana. Con el paso de los años, la inflación afecta directamente el poder adquisitivo de las personas, lo que significa que una cantidad de dinero hoy no tendrá el mismo valor mañana. Por esta razón, calcular la inflación acumulada entre dos fechas específicas se vuelve fundamental tanto para consumidores como para empresarios, inversionistas y estudiantes de economía. Esta calculadora permite hacer ese análisis de forma rápida, precisa y accesible, y es cada vez más consultada por quienes desean mantener sus finanzas personales o empresariales bajo control.</p>
+  <p>Utilizar una calculadora de inflación en México implica conocer algunos datos básicos: el año de inicio, el año final y el monto de dinero que se quiere ajustar por inflación. Por ejemplo, si alguien quiere saber cuánto equivalen 1,000 pesos de 1995 en términos del poder adquisitivo actual, solo tiene que ingresar estos datos en la herramienta, y esta realizará el cálculo basándose en los índices de precios al consumidor (IPC) proporcionados por instituciones como el Instituto Nacional de Estadística y Geografía (INEGI) o el Banco de México. Estos índices reflejan la variación en los precios de una canasta representativa de bienes y servicios a lo largo del tiempo, por lo que son la base confiable para hacer ajustes inflacionarios.</p>
+  <p>La inflación en México ha tenido periodos de estabilidad y otros de alta volatilidad. Durante las décadas de los 80 y 90, el país enfrentó tasas inflacionarias muy elevadas que erosionaron gravemente el poder adquisitivo de los hogares. En esos años, el uso de una calculadora de inflación sería revelador: cantidades que parecían significativas en su momento, vistas con la perspectiva actual, apenas tendrían un valor simbólico. Por eso, comprender cómo se deprecia el dinero con el tiempo es esencial para quienes quieren hacer análisis históricos, evaluar inversiones o simplemente entender cómo han cambiado los precios de productos y servicios a lo largo del tiempo.</p>
+  <p>Una Calculadora de Inflación México también es muy útil al momento de comparar sueldos y salarios del pasado con los actuales. Muchas personas desean saber si su salario actual ha crecido realmente o si, en términos reales, ganan lo mismo o incluso menos que hace años. Por ejemplo, si alguien ganaba 10,000 pesos en el año 2005, es importante saber cuánto equivaldría esa cantidad en 2025, considerando la inflación. De esta forma, se puede hacer una evaluación más justa de la evolución del ingreso. Esta comparación también es valiosa para empresas que buscan mantener el poder adquisitivo de sus empleados mediante ajustes salariales adecuados.</p>
+  <p>El poder adquisitivo es uno de los conceptos más afectados por la inflación. Aunque alguien reciba el mismo salario durante varios años, si la inflación ha sido constante, ese salario ya no le permitirá comprar lo mismo que antes. Es decir, aunque nominalmente gane lo mismo, en términos reales su situación económica puede haber empeorado. Aquí es donde la calculadora de inflación en México cobra relevancia, ya que permite ajustar cantidades históricas al valor presente para tener una mejor perspectiva de la realidad financiera.</p>
+  <p>Además del análisis salarial, esta herramienta es útil en el ámbito de las inversiones. Supongamos que una persona hizo una inversión en 2010 y obtuvo una rentabilidad del 50% para 2020. Aunque a primera vista esa ganancia puede parecer positiva, si la inflación acumulada en ese periodo fue del 60%, en realidad hubo una pérdida del poder adquisitivo. Es decir, la rentabilidad real fue negativa. Este tipo de evaluación solo puede realizarse con precisión utilizando una calculadora de inflación confiable y actualizada. Por eso, los inversionistas y asesores financieros la utilizan frecuentemente para tomar decisiones más acertadas.</p>
+</article>
+
+<section class="about-author" aria-label="Sobre el autor">
+  <h3>Sobre el Autor</h3>
+  <p>Sufiyan Malik es un desarrollador web apasionado con experiencia en crear aplicaciones modernas y amigables para usuarios. Su objetivo es facilitar herramientas útiles como esta calculadora para ayudar a los usuarios en su planificación financiera.</p>
+</section>
+
+<footer>
+  © 2025 Calculadora de Inflación - Todos los derechos reservados.
+</footer>
+
+<script>
+function handleCalculation(event) {
+  event.preventDefault();
+  const valorInicial = parseFloat(document.getElementById('valorInicial').value);
+  const inflacion = parseFloat(document.getElementById('inflacion').value) / 100;
+  const años = parseInt(document.getElementById('años').value);
+  if(isNaN(valorInicial) || isNaN(inflacion) || isNaN(años) || valorInicial < 0 || inflacion < 0 || años < 0) {
+    alert('Por favor, ingresa valores válidos y no negativos.');
+    return;
+  }
+  const valorFinal = valorInicial * Math.pow(1 + inflacion, años);
+  const resultado = document.getElementById('resultado');
+  resultado.style.display = 'block';
+  resultado.textContent = `Valor ajustado por inflación después de ${años} año(s): ${valorFinal.toFixed(2)} (moneda local)`;
+  resultado.focus();
+}
+</script>
+</body>
+</html>
